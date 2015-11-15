@@ -6,7 +6,6 @@ public class LogViewModel {
 
     private String mTitle;
     private String mSubtitle;
-    private String mDescription;
     private int mIconResource;
     private Drawable mIconDrawable;
     private String mLog;
@@ -15,7 +14,6 @@ public class LogViewModel {
     public static class Builder {
         private String title;
         private String subtitle;
-        private String description;
         private int iconResource;
         private Drawable iconDrawable;
         private String log;
@@ -27,11 +25,6 @@ public class LogViewModel {
 
         public Builder setSubtitle(String mSubtitle) {
             this.subtitle = mSubtitle;
-            return this;
-        }
-
-        public Builder setDescription(String mDescription) {
-            this.description = mDescription;
             return this;
         }
 
@@ -53,7 +46,6 @@ public class LogViewModel {
         public LogViewModel build() {
             LogViewModel logViewModel = new LogViewModel();
             logViewModel.mTitle = title;
-            logViewModel.mDescription = description;
             logViewModel.mSubtitle = subtitle;
             logViewModel.mIconResource = iconResource;
             logViewModel.mIconDrawable = iconDrawable;
@@ -73,10 +65,6 @@ public class LogViewModel {
 
     public String getSubtitle() {
         return mSubtitle;
-    }
-
-    public String getDescription() {
-        return mDescription;
     }
 
     public Drawable getIconDrawable() {
