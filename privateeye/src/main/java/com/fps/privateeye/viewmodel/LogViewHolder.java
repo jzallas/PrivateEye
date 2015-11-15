@@ -31,7 +31,7 @@ public class LogViewHolder extends BaseViewHolder<LogViewModel> {
     }
 
     @Override
-    public void bindView(Context context, LogViewModel data) {
+    public void bindView(LogViewModel data) {
         mTitle.setText(data.getTitle());
         mSubtitle.setText(data.getSubtitle());
         mIcon.setImageResource(data.getIconResource());

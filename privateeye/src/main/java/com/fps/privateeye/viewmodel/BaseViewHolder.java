@@ -1,6 +1,5 @@
 package com.fps.privateeye.viewmodel;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -10,5 +9,5 @@ public abstract class BaseViewHolder<T> extends RecyclerView.ViewHolder {
         super(itemView);
     }
 
-    public abstract void bindView(Context context, T data);
+    public abstract void bindView(T data);
 }

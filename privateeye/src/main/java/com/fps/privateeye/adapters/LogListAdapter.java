@@ -15,24 +15,17 @@ import java.util.List;
 
 public class LogListAdapter extends RecyclerView.Adapter<BaseViewHolder<LogViewModel>> {
 
-
-    private Context mContext;
-
     private List<LogViewModel> mData;
-
-    public LogListAdapter(Context mContext) {
-        this.mContext = mContext;
-    }
 
     @Override
     public BaseViewHolder<LogViewModel> onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.list_item_log, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_log, parent, false);
         return new LogViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(BaseViewHolder<LogViewModel> holder, int position) {
-        holder.bindView(mContext, getItem(position));
+        holder.bindView(getItem(position));
     }
 
     private LogViewModel getItem(int pos) {
