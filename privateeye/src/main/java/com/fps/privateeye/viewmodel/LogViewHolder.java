@@ -26,7 +26,7 @@ public class LogViewHolder extends BaseViewHolder<LogViewModel> {
         mLog = (TextView) view.findViewById(R.id.log_text);
         mIcon = (ImageView) view.findViewById(R.id.icon);
         mCollaspsedButton = (ImageView) view.findViewById(R.id.collapsed_button);
-        mContentContainer = (LinearLayout) view.findViewById(R.id.content);
+//        mContentContainer = (LinearLayout) view.findViewById(R.id.content);
         mCardView = (CardView) view.findViewById(R.id.card_view);
     }
 

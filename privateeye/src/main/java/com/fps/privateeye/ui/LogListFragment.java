@@ -23,7 +23,7 @@ public class LogListFragment extends BaseFragment {
         return new LogViewModel.Builder()
                 .setTitle("")
                 .setSubtitle("")
-                .setDescription("")
+//                .setDescription("")
                 .build();
 
     }
