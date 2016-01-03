@@ -1,4 +1,4 @@
-package com.fps.privateeye.viewmodel;
+package com.fps.privateeye.ui.viewmodel;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;

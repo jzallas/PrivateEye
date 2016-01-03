@@ -1,4 +1,4 @@
-package com.fps.privateeye.viewmodel;
+package com.fps.privateeye.ui.viewmodel;
 
 import android.graphics.drawable.Drawable;
 
@@ -6,7 +6,7 @@ public class ReportViewModel {
 
   private String mTitle;
   private String mSubtitle;
-  private int mIconResource;
+  private int mBackgroundColor;
   private Drawable mIconDrawable;
   private String mDescription;
 
@@ -15,9 +15,9 @@ public class ReportViewModel {
 
     private String title;
     private String subtitle;
-    private int iconResource;
     private Drawable iconDrawable;
     private String description;
+    private int backgroundColor;
 
     public Builder setTitle(String mTitle) {
       this.title = mTitle;
@@ -29,8 +29,8 @@ public class ReportViewModel {
       return this;
     }
 
-    public Builder setIconResource(int mIconResource) {
-      this.iconResource = mIconResource;
+    public Builder setBackgroundColor(int backgroundColor){
+      this.backgroundColor = backgroundColor;
       return this;
     }
 
@@ -48,9 +48,9 @@ public class ReportViewModel {
       ReportViewModel logViewModel = new ReportViewModel();
       logViewModel.mTitle = title;
       logViewModel.mSubtitle = subtitle;
-      logViewModel.mIconResource = iconResource;
       logViewModel.mIconDrawable = iconDrawable;
       logViewModel.mDescription = description;
+      logViewModel.mBackgroundColor = backgroundColor;
       return logViewModel;
     }
   }
@@ -60,8 +60,8 @@ public class ReportViewModel {
     //empty constructor
   }
 
-  public int getIconResource() {
-    return mIconResource;
+  public int getBackgroundColor() {
+    return mBackgroundColor;
   }
 
   public String getTitle() {

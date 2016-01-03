@@ -5,7 +5,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuItem;
+
+import com.fps.privateeye.evidence.data.BasicData;
 
 public class SampleActivity extends AppCompatActivity {
 
@@ -26,12 +27,12 @@ public class SampleActivity extends AppCompatActivity {
     return true;
   }
 
-  private void attachSampleFragment(){
+  private void attachSampleFragment() {
 
     final FragmentManager fragmentManager = getSupportFragmentManager();
     Fragment sampleFragment = fragmentManager.findFragmentByTag(SampleFragment.TAG);
 
-    if (sampleFragment == null){
+    if (sampleFragment == null) {
       fragmentManager.beginTransaction()
           .replace(R.id.pi_fragment_frame, new SampleFragment(), SampleFragment.TAG)
           .commit();
@@ -42,5 +43,15 @@ public class SampleActivity extends AppCompatActivity {
   protected void onDestroy() {
     super.onDestroy();
     PrivateEye.dismiss();
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    PrivateEye.investigation(this)
+        .withData(
+            new BasicData("onResume()",
+                "The LifeCycle method onResume() has occurred in the Activity"))
+        .report();
   }
 }
