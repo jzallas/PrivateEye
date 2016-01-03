@@ -24,4 +24,10 @@ public class SampleFragment extends Fragment {
     // plant the private eye on the parent screen so it can report any findings
     PrivateEye.plant(this);
   }
+
+  @Override
+  public void onDestroy() {
+    super.onDestroy();
+    PrivateEye.dismiss();
+  }
 }

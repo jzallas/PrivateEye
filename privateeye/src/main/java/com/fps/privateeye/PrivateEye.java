@@ -1,16 +1,21 @@
 package com.fps.privateeye;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+
+import com.fps.privateeye.ui.ReportListDialog;
 
 public class PrivateEye {
+
+  private ReportListDialog mDialog = null;
 
   private static PrivateEye sInstance;
 
@@ -38,7 +43,7 @@ public class PrivateEye {
     ViewGroup rootView = (ViewGroup) activity.getWindow().getDecorView()
         .findViewById(android.R.id.content);
 
-    attachToViewGroup(rootView);
+    getInstance().attachToViewGroup(rootView);
   }
 
   /**
@@ -50,7 +55,7 @@ public class PrivateEye {
    * @param context  the {@link Context} where the menu item will exist
    */
   public static void plant(Menu menu, MenuInflater inflater, Context context) {
-    attachToMenu(menu, inflater, context);
+    getInstance().attachToMenu(menu, inflater, context);
   }
 
   /**
@@ -85,7 +90,7 @@ public class PrivateEye {
   }
 
 
-  private static void attachToMenu(Menu menu, MenuInflater inflater, final Context context) {
+  private void attachToMenu(Menu menu, MenuInflater inflater, final Context context) {
     MenuItem investigateMenuItem = menu.findItem(R.id.pi_action_investigate);
     if (investigateMenuItem == null) {
       inflater.inflate(R.menu.menu_pi_investigate, menu);
@@ -101,13 +106,13 @@ public class PrivateEye {
     });
   }
 
-  private static void attachToViewGroup(ViewGroup viewGroup) {
+  private void attachToViewGroup(ViewGroup viewGroup) {
     if (viewGroup != null && viewGroup.findViewById(R.id.pi_investigate_button) == null) {
       attachInvestigateButton(viewGroup);
     }
   }
 
-  private static void attachInvestigateButton(ViewGroup viewGroup) {
+  private void attachInvestigateButton(ViewGroup viewGroup) {
     final View investigateButton = createInvestigateButton(viewGroup);
     investigateButton.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -118,13 +123,30 @@ public class PrivateEye {
     viewGroup.addView(investigateButton);
   }
 
-  private static View createInvestigateButton(ViewGroup viewGroup) {
+  private View createInvestigateButton(ViewGroup viewGroup) {
     return LayoutInflater.from(viewGroup.getContext())
         .inflate(R.layout.widget_investigate_button, viewGroup, false);
   }
 
-  private static void showReport(Context context) {
-    //// TODO: 1/2/16 Launch Actual Report
-    Toast.makeText(context, "Investigating", Toast.LENGTH_SHORT).show();
+  private void showReport(Context context) {
+    mDialog = ReportListDialog.create(context);
+    mDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+      @Override
+      public void onDismiss(DialogInterface dialog) {
+        mDialog = null;
+      }
+    });
+    mDialog.show();
+  }
+
+  /**
+   * Dismiss any currently displayed report.
+   */
+  public static void dismiss() {
+    final Dialog dialog = getInstance().mDialog;
+    if (dialog != null) {
+      dialog.dismiss();
+      getInstance().mDialog = null;
+    }
   }
 }

@@ -37,4 +37,10 @@ public class SampleActivity extends AppCompatActivity {
           .commit();
     }
   }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
+    PrivateEye.dismiss();
+  }
 }
