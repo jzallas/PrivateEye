@@ -25,13 +25,10 @@
 
             <LinearLayout
                 android:id="@+id/title_container"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_alignParentLeft="true"
-                android:layout_toEndOf="@id/icon"
                 android:layout_toLeftOf="@+id/collapsed_button"
                 android:layout_toRightOf="@id/icon"
-                android:layout_toStartOf="@+id/collapsed_button"
                 android:gravity="center_vertical"
                 android:orientation="vertical">
 
