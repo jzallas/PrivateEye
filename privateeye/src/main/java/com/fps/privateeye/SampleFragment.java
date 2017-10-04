@@ -7,6 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.fps.privateeye.evidence.data.BasicData;
+import com.fps.privateeye.evidence.style.BasicColorStyle;
+
 public class SampleFragment extends Fragment {
 
   public static final String TAG = SampleFragment.class.getName();
@@ -29,5 +32,16 @@ public class SampleFragment extends Fragment {
   public void onDestroy() {
     super.onDestroy();
     PrivateEye.dismiss();
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    PrivateEye.investigation(getActivity())
+        .withData(
+            new BasicData("onResume()",
+                "The LifeCycle method onResume() has occurred in the Fragment"))
+        .withStyle(new BasicColorStyle(0xFF84CBD0, 0xFF4259D0))
+        .report();
   }
 }

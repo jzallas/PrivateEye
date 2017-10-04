@@ -1,9 +1,8 @@
-package com.fps.privateeye.viewmodel;
+package com.fps.privateeye.ui.viewmodel;
 
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.fps.privateeye.R;
@@ -32,19 +31,15 @@ public class ReportViewHolder extends BaseViewHolder<ReportViewModel> {
     mTitle.setText(data.getTitle());
     mSubtitle.setText(data.getSubtitle());
     mLog.setText(data.getDescription());
-
-    mIcon.setVisibility(View.GONE);
+    mCardView.setBackgroundColor(data.getBackgroundColor());
 
     if (data.getIconDrawable() != null) {
       mIcon.setImageDrawable(data.getIconDrawable());
       mIcon.setVisibility(View.VISIBLE);
-    } else if (data.getIconResource() > 0) {
-      mIcon.setImageResource(data.getIconResource());
-      mIcon.setVisibility(View.VISIBLE);
     } else {
-      mIcon.setImageResource(R.mipmap.ic_launcher);
-      mIcon.setVisibility(View.VISIBLE);
+      mIcon.setVisibility(View.GONE);
     }
+
 
   }
 

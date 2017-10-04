@@ -11,11 +11,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.fps.privateeye.evidence.EvidenceStore;
+import com.fps.privateeye.report.InvestigationBuilder;
 import com.fps.privateeye.ui.ReportListDialog;
 
 public class PrivateEye {
 
   private ReportListDialog mDialog = null;
+  private EvidenceStore mEvidenceStore;
 
   private static PrivateEye sInstance;
 
@@ -28,6 +31,10 @@ public class PrivateEye {
       }
     }
     return sInstance;
+  }
+
+  public PrivateEye() {
+    mEvidenceStore = new EvidenceStore();
   }
 
   /**
@@ -89,7 +96,6 @@ public class PrivateEye {
     plant(fragment.getActivity());
   }
 
-
   private void attachToMenu(Menu menu, MenuInflater inflater, final Context context) {
     MenuItem investigateMenuItem = menu.findItem(R.id.pi_action_investigate);
     if (investigateMenuItem == null) {
@@ -129,7 +135,7 @@ public class PrivateEye {
   }
 
   private void showReport(Context context) {
-    mDialog = ReportListDialog.create(context);
+    mDialog = ReportListDialog.create(context).attachReports(mEvidenceStore);
     mDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
       @Override
       public void onDismiss(DialogInterface dialog) {
@@ -137,6 +143,11 @@ public class PrivateEye {
       }
     });
     mDialog.show();
+  }
+
+  public static InvestigationBuilder investigation(Context context) {
+    final Context appContext = context.getApplicationContext();
+    return new InvestigationBuilder(appContext, getInstance().mEvidenceStore);
   }
 
   /**
